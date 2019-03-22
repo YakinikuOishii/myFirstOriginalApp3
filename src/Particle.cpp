@@ -10,7 +10,7 @@
 // コンストラクタ(初期化)
 Particle::Particle() {
     setInitialCondition(0, 0, 0, 0);
-    damping = 0.01f;
+    damping = 0.03f;
 }
 
 // 力(加速度をリセット)

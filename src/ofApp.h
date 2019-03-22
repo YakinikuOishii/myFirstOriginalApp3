@@ -26,6 +26,12 @@ class ofApp : public ofBaseApp{
     
 //    Particle p[100];
     vector <Particle> particles;
+    
     ofImage backGroundImage;
+    
     ofColor colorArray[10];
+    ofColor colorArray2[10];
+    ofColor colorArray3[10];
+    
+    int clickCount;
 };
