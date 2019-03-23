@@ -8,13 +8,13 @@ void ofApp::setup(){
     ofBackground(0, 0, 0);
     clickCount = 0;
     
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<NUM; i++) {
         colorArray[i].setHsb(ofRandom(0, 30), 100, 250);
         colorArray2[i].setHsb(ofRandom(100, 150), 100, 255);
         colorArray3[i].setHsb(ofRandom(200,255), 100, 255);
     }
 //    p.setInitialCondition(ofGetWidth()/2, ofGetHeight()/2, ofRandom(-10.10), ofRandom(-10, 10));
-    
+    particleCount = 0;
 }
 
 //--------------------------------------------------------------
@@ -30,25 +30,18 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofSetColor(255, 255, 255);
     backGroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
-    for (int i=0; i<particles.size(); i++) {
-//        ofSetColor(colorArray[i % 10]);
-//        if (mouseX <= ofGetWidth()/3) {
-//                ofSetColor(colorArray[i % 10]);
-//        }else if(mouseX > ofGetWidth()/3 && mouseX <= ofGetWidth()/3*2) {
-//                ofSetColor(colorArray2[i % 10]);
-//        }else if(mouseX > ofGetWidth()/3*2) {
-//                ofSetColor(colorArray3[i % 10]);
-//        }
-        
-        if (clickCount%3 == 0) {
-            ofSetColor(colorArray[i % 10]);
+    
+    for (int i=0; i<particles.size(); i++) { // 余りで色を切り替える
+        if (particles[i].count%3 == 0) {
+            ofSetColor(particles[i].color);
             
-        }else if(clickCount%3 == 1) {
-            ofSetColor(colorArray2[i % 10]);
+        }else if(particles[i].count%3 == 1) {
+            ofSetColor(particles[i].color2);
             
-        }else if(clickCount%3 == 2) {
-            ofSetColor(colorArray3[i % 10]);
+        }else if(particles[i].count%3 == 2) {
+            ofSetColor(particles[i].color3);
             
         }
         
@@ -81,21 +74,31 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    particles.clear();
+    
+    for (int i=0; i<particles.size(); i++) { // 全てのパーティクルを見る
+        for(int i=0; i<particleCount; i++){ // 全てのグループを見る
+            if(particles[i].particleNum == i){ // グループを確認する
+                particles[i].count++; // そのグループのマウスクリック数を増やす
+            }
+        }
+    }
+
+//    particles.clear();®
     clickCount = clickCount + 1;
     for (int i=0; i<NUM; i++) {
         Particle myParticle;
-        float vx = ofRandom(-7, 7);
+        float vx = ofRandom(-10, 10);
         float vy = ofRandom(-10, 5);
-        myParticle.setInitialCondition(x, y, vx, vy); // setInitialCondition(float px, float py, float vx, float vy)
-//        force.x = force.x - velocity.x * damping;
-    
-        
+        ofColor c = colorArray[i];
+        ofColor c2 = colorArray2[i];
+        ofColor c3 = colorArray3[i];
+        myParticle.setInitialCondition(x, y, vx, vy, c, c2, c3, particleCount); // setInitialCondition(float px, float py, float vx, float vy)
+
         // 配列の末尾に追加
         particles.push_back(myParticle);
 //        particles[i].setInitialCondition(x, y, ofRandom(-10, 10), ofRandom(-10, 10));
     }
-    
+    particleCount++;
 }
 
 //--------------------------------------------------------------

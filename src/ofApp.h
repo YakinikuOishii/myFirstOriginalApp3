@@ -34,4 +34,5 @@ class ofApp : public ofBaseApp{
     ofColor colorArray3[10];
     
     int clickCount;
+    int particleCount;
 };
