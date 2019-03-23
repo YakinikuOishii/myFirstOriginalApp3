@@ -33,7 +33,8 @@ public:
     void resetForce(); // 力のリセット
     void addForce(float x, float y); // 力を加える
     void addDampingForce(); // 抵抗力(摩擦力)を加える
-    void setInitialCondition(float px, float py, float vx, float vy, ofColor c, ofColor c2, ofColor c3, int num); // 状態の初期化
+//    void setInitialCondition(float px, float py, float vx, float vy, ofColor c, ofColor c2, ofColor c3, int num); // 状態の初期化
+    void setInitialCondition(float px, float py, float vx, float vy, ofColor c, int num);
     void update(); // 位置更新
     void draw(); // 描画
     

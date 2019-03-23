@@ -29,9 +29,9 @@ class ofApp : public ofBaseApp{
     
     ofImage backGroundImage;
     
-    ofColor colorArray[10];
-    ofColor colorArray2[10];
-    ofColor colorArray3[10];
+    ofColor colorArray[100];
+    ofColor colorArray2[100];
+    ofColor colorArray3[100];
     
     int clickCount;
     int particleCount;

@@ -13,7 +13,7 @@ Particle::Particle() {
     ofColor setColor2 = (0,0,0);
     ofColor setColor3 = (0,0,0);
     
-    setInitialCondition(0, 0, 0, 0, setColor, setColor2, setColor3, 0);
+    setInitialCondition(0, 0, 0, 0, setColor, 0);
     damping = 0.03f;
     count = 0;
 }
@@ -36,12 +36,12 @@ void Particle::addDampingForce(){
 }
 
 // 初期状態を設定
-void Particle::setInitialCondition(float px, float py, float vx, float vy, ofColor c, ofColor c2, ofColor c3, int num){
+void Particle::setInitialCondition(float px, float py, float vx, float vy, ofColor c, int num){
     position.set(px, py);
     velocity.set(vx, vy);
     color = c;
-    color2 = c2;
-    color3 = c3;
+//    color2 = c2;
+//    color3 = c3;
     particleNum = num;
 }
 
